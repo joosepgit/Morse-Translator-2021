@@ -37,7 +37,8 @@ bool isValidAscii(const char s[]){
         // to still attempt translating upon meeting an unexpected sequence of whitespaces
         // or newlines when reading from file. Additionally, we can be sure that no lowercase
         // characters are inside the input, as this function is always used after uppercasing the input.
-        if ((s[c] < 'A' || s[c] > 'Z') && s[c] != ' ' && s[c] != '\r' && s[c] != '\n') {
+        bool unfit = !((s[c] >= '0' && s[c] <= '9') || (s[c] >= 'A' && s[c] <= 'Z'));
+        if (unfit && s[c] != ' ' && s[c] != '\r' && s[c] != '\n') {
             printf("Illegal symbol in input text:\n %c\nCharacter number %d.\n", s[c], c);
             return false;
         }
